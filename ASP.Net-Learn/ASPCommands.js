@@ -91,3 +91,234 @@
 //* What is a web server?
 //+ In simple terms, a web server, is a software, that is used to deliver web pages to clients using the Hypertext Transfer Protocol (HTTP). 
 //+ For example, IIS is a web server that can be used to run asp.net web applications.
+
+//+ Text Box Controls property
+// https://csharp-video-tutorials.blogspot.com/2012/10/aspnet-textbox-control-part-10.html
+//+radio button
+// https://csharp-video-tutorials.blogspot.com/2012/10/aspnet-radio-button-control-part-11.html
+//+ checkbox
+//https://csharp-video-tutorials.blogspot.com/2012/10/aspnet-checkbox-control-part-12.html
+//https://csharp-video-tutorials.blogspot.com/2012/10/dropdownlist-in-aspnet-part-16.html
+//https://csharp-video-tutorials.blogspot.com/2012/11/data-bind-aspnet-dropdownlist-with-data.html
+
+//! For finding the physical path
+Server.MapPath(".") //+ returns the current physical directory of the page that you are running. It actually points to the current folder
+Server.MapPath("..") //+ returns the parent pysical directory of the page that you are running.
+Server.MapPath("~")  //+ returns the physical path of the root directory of the application. points to the project root
+
+//* retrieve data from dropdownlist
+//+ Selected Item Text: DropDownList1.SelectedItem.Text
+//+ Selected Item Value: DropDownList1.SelectedItem.Value
+//https://csharp-video-tutorials.blogspot.com/2012/11/cascading-dropdown-in-aspnet-part-22.html
+// https://csharp-video-tutorials.blogspot.com/2012/11/aspnet-checkboxlist-control-part-23.html
+//https://csharp-video-tutorials.blogspot.com/2012/11/aspnet-listbox-control-part-25.html
+//https://csharp-video-tutorials.blogspot.com/2012/11/fileupload-control-in-aspnet-part-30.html
+//https://csharp-video-tutorials.blogspot.com/2012/11/aspnet-calendar-control-part-32.html
+
+//! HiddenField
+//https://csharp-video-tutorials.blogspot.com/2012/11/aspnet-calendar-control-part-32.html
+//! UseSubmitBehavior
+//+ The UseSubmitBehavior property specifies if the Button control uses the browser's built-in submit function or the ASP.NET postback mechanism.
+//+ This property is TRUE by default. When set to FALSE, ASP.NET adds a client-side script to post the form.
+//https://csharp-video-tutorials.blogspot.com/2012/11/literal-control-in-aspnet-part-41.html
+//! Panel control
+//+ It is used to group controlls together
+//https://csharp-video-tutorials.blogspot.com/2012/11/aspnet-panel-control-part-42.html
+
+//! Validator
+//https://csharp-video-tutorials.blogspot.com/2012/11/requiredfield-validator-control-in.html
+//https://csharp-video-tutorials.blogspot.com/2012/11/rangevalidator-control-in-aspnet-part-45.html
+//https://csharp-video-tutorials.blogspot.com/2012/11/comparevalidator-control-in-aspnet-part.html
+//https://csharp-video-tutorials.blogspot.com/2012/11/regularexpressionvalidator-control-in.html
+//https://csharp-video-tutorials.blogspot.com/2012/11/customvalidator-control-in-aspnet-part.html
+
+//! Different page navigation techniques
+//https://csharp-video-tutorials.blogspot.com/2012/11/different-page-navigation-techniques-in.html
+//% HyperLink
+//% Response Redirect
+//+ Response.Redirect is similar to clicking on a hyperlink. The Hyperlink control does not expose any server side events. 
+//+ So when the user clicks on a hyperlink, there is no server side event to intercept the click. Response.Redirect causes 2 request/response cycles.
+//+ Also, note that when Response.Redirect is used the URL in the address bar changes and the browser history is maintained.
+//+ Response.Redirect() can be used to navigate pages/websites on the same web server or on a different web server.
+//https://csharp-video-tutorials.blogspot.com/2012/11/responseredirect-in-aspnet-part-52.html
+//%Server Transfer
+//+ Just like hyperlink and Response.Redirect, Server.Transfer is used to navigate to other pages/sites running on the same web server.
+//+  Server.Transfer is faster than Response.Redirect as the redirection happens on the server in one Request/Response cycle. Response.Redirect() involves 2 Request/Response cycles.
+//+ we can use the data from the previous request
+//* System.Collections.Specialized.NameValueCollection nameValueCollection = Request.Form;
+//* lblName.Text = nameValueCollection["txtName"];
+//* lblEmail.Text = nameValueCollection["txtEmail"];
+//https://csharp-video-tutorials.blogspot.com/2012/11/servertransfer-in-aspnet-part-53.html
+//% Server Execute
+//* Server.Execute()
+//+ Server.Transfer terminates the execution of the current page and starts the execution of the new page, where as Server.Execute process the second Web form
+//+ without leaving the first Web form. After completing the execution of the first webform, the control returns to the second webform.
+//https://csharp-video-tutorials.blogspot.com/2012/11/serverexecute-in-aspnet-part-54.html
+//% Cross page posting
+//+ Cross page posting allows to post one page to another page. By default, when you click a button, the webform posts to itself. If you want to post to another 
+//+ webform on a button click, set the PostBackUrl of the button, to the page that you want to post to.
+//https://csharp-video-tutorials.blogspot.com/2012/11/cross-page-posting-in-aspnet-part-55.html
+//% Opening new window using javascript
+window.open(URL, name, features, replace);
+//https://csharp-video-tutorials.blogspot.com/2012/11/opening-new-window-using-javascript-in.html
+
+//! Techniques to send data from one webform to another
+//% Context.Handler
+//+ Page lastpage = (Page)Context.Handler;
+//https://csharp-video-tutorials.blogspot.com/2012/11/techniques-to-send-data-from-one.html
+//% QueryString
+//* Response.Redirect("WebForm2.aspx?UserName=" + Server.UrlEncode(txtName.Text) + "&UserEmail=" + Server.UrlEncode(txtEmail.Text));
+//* lblName.Text = Request.QueryString["UserName"];
+//https://csharp-video-tutorials.blogspot.com/2012/11/querystring-in-aspnet-part-59.html
+//%Cookies
+//* HttpCookie cookie = new HttpCookie("UserDetails");
+//* cookie["Name"] = txtName.Text;
+//* cookie["Email"] = txtEmail.Text;
+//* cookie.Expires = DateTime.Now.AddDays(30); // for giving expiry time for a cookies, by default it will expire when browser closes
+//* Response.Cookies.Add(cookie);
+//+ web sites use cookies to store user preferences or other information that is client-specific. Cookies store small amounts of information on the client’s machine.
+//* HttpCookie cookie = Request.Cookies["UserDetails"];
+//* if (cookie != null)
+//* {
+//*     lblName.Text = cookie["Name"];
+//*     lblEmail.Text = cookie["Email"];
+//* }
+//https://csharp-video-tutorials.blogspot.com/2012/11/cookies-in-aspnet-part-60.html
+//https://csharp-video-tutorials.blogspot.com/2012/11/how-to-check-if-cookies-are-enabled-or.html
+//% Session state
+//+ Just like Query strings, Session State variables can also be used to send data from one webform to another.
+Session["Name"] = txtName.Text;
+lblName.Text = Session["Name"].ToString();
+//* <sessionState mode="InProc" timeout="30"></sessionState>
+//https://csharp-video-tutorials.blogspot.com/2012/11/aspnet-session-state-part-62.html
+//* <sessionState mode="InProc" cookieless="true"></sessionState>
+//https://csharp-video-tutorials.blogspot.com/2012/11/cookie-less-sessions-in-aspnet-part-63.html
+//https://csharp-video-tutorials.blogspot.com/2012/12/inporc-aspnet-session-state-mode.html
+//https://csharp-video-tutorials.blogspot.com/2012/12/stateserver-aspnet-session-state-mode.html
+//https://csharp-video-tutorials.blogspot.com/2012/12/sqlserver-aspnet-session-state-mode.html
+//! Application state
+//https://csharp-video-tutorials.blogspot.com/2012/12/aspnet-application-state-part-67.html
+//https://csharp-video-tutorials.blogspot.com/2012/12/aspnet-application-state-real-time.html
+Application["UsersOnline"] = 0;
+Application.Lock();
+Application["UsersOnline"] = (int)Application["UsersOnline"] + 1;
+Application.UnLock();
+Response.Write("Number of Users Online = " +
+    Application["UsersOnline"].ToString());
+
+//! Error handling
+//https://csharp-video-tutorials.blogspot.com/2012/12/exception-handling-in-aspnet-part-69.html
+//+ Handling exceptions using try/catch blocks is commonly termed as structured exception handling. Asp.net provide 2 error events
+//+ Page_Error - This event is raised at the page level, when there is an unhandled exception on the page. The event handler resides on the page.
+//+ Application_Error - This event is raised at the application level, when there is an unhandled exception at an application level. The event handler resides in Global.asax file
+//*protected void Page_Error(object sender, EventArgs e)
+//*{
+//*    Exception ex = Server.GetLastError();
+//*    Server.ClearError();
+//*    Response.Redirect("Errors.aspx");
+//*}
+//https://csharp-video-tutorials.blogspot.com/2012/12/error-events-in-aspnet-part-70.html
+//! Logging to SQL
+//https://csharp-video-tutorials.blogspot.com/2012/12/logging-exception-to-database-part-75.html
+//% adding settings to web.config
+//*<appSettings>
+//*  <!--LogProvider = Database|EventViewer|Both-->
+//*  <add key="LogProvider" value="Both"/>
+//*</appSettings>
+//+ retrieving
+//% string logProvider = ConfigurationManager.AppSettings["LogProvider"];
+
+//! Sending email
+//*MailMessage mailMessage = new MailMessage("from_email@gmail.com", "To_Email@gmail.com");
+//*public static void SendEmail(string emailbody)
+//*{
+//*    MailMessage mailMessage = new MailMessage("from_email@gmail.com", "To_Email@gmail.com");// Specify the from and to email address
+//*    mailMessage.Body = emailbody;// Specify the email body
+//*    mailMessage.Subject = "Exception";// Specify the email Subject
+//*
+//*    SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);// Specify the SMTP server name and post number
+//*    smtpClient.Credentials = new System.Net.NetworkCredential() // Specify your gmail address and password
+//*    {
+//*        UserName = "from_email@gmail.com", Password = "your_password"
+//*    };
+//*    smtpClient.EnableSsl = true;// Gmail works on SSL, so set this property to true
+//*    smtpClient.Send(mailMessage);// Finall send the email message using Send() method
+//*}
+//% can add in web.config settings
+//* <system.net>
+//*   <mailSettings>
+//*     <smtp deliveryMethod="Network" >
+//*       <network host="smtp.gmail.com" enableSsl="true" port="587"
+//*         userName="your_email@gmail.com" password="your_password"/>
+//*     </smtp>
+//*   </mailSettings>
+//* </system.net>
+//https://csharp-video-tutorials.blogspot.com/2012/12/sending-emails-in-aspnet-using-smtp.html
+
+//! Tracing
+//* <trace enabled="true"/>
+//https://csharp-video-tutorials.blogspot.com/2012/12/tracing-in-aspnet-part-79.html
+//https://csharp-video-tutorials.blogspot.com/2012/12/writing-custom-aspnet-tracing-messages.html
+
+//! Application pool
+//https://csharp-video-tutorials.blogspot.com/2012/12/application-pools-in-iis-part-82.html
+
+//! Anonymous authentication
+//https://csharp-video-tutorials.blogspot.com/2012/12/anonymous-authentication-in-aspnet-part.html
+//https://csharp-video-tutorials.blogspot.com/2012/12/anonymous-authentication-and-aspnet.html
+//! Windows authentication
+//https://csharp-video-tutorials.blogspot.com/2012/12/windows-authentication-in-aspnet-part-87.html
+//https://csharp-video-tutorials.blogspot.com/2012/12/windows-authentication-and.html
+//! Forms authentication
+//https://csharp-video-tutorials.blogspot.com/2012/12/forms-authentication-using-user-names.html
+//https://csharp-video-tutorials.blogspot.com/2012/12/forms-authentication-in-aspnet-and-user.html
+//https://csharp-video-tutorials.blogspot.com/2012/12/forms-authentication-against-users-in.html
+//https://csharp-video-tutorials.blogspot.com/2012/12/forms-authentication-and-locking-user.html
+//https://csharp-video-tutorials.blogspot.com/2012/12/implementing-password-reset-link-in.html
+//https://csharp-video-tutorials.blogspot.com/2012/12/implementing-change-password-page-in.html
+
+//! SSL
+//https://csharp-video-tutorials.blogspot.com/2012/12/secure-socket-layer-in-aspnet-part-100.html
+//https://csharp-video-tutorials.blogspot.com/2012/12/secure-socket-layer-in-aspnet-part-100.html
+//https://csharp-video-tutorials.blogspot.com/2012/12/redirect-http-to-https-in-iis-part-102.html
+
+//! User Control
+//https://csharp-video-tutorials.blogspot.com/2012/12/user-controls-in-aspnet-part-104.html
+//https://csharp-video-tutorials.blogspot.com/2012/12/adding-and-using-user-controls-on.html
+
+//! Custom Controls
+//* skipped
+
+//!Caching
+//https://csharp-video-tutorials.blogspot.com/2013/01/caching-in-aspnet-part-119.html
+//https://csharp-video-tutorials.blogspot.com/2013/01/caching-multiple-responses-for-single.html
+//https://csharp-video-tutorials.blogspot.com/2013/01/controlling-aspnet-caching-in-code-part.html
+//https://csharp-video-tutorials.blogspot.com/2013/02/caching-application-data-in-aspnet-part.html
+//* Cache["ProductsData"] = ds;
+//* DataSet ds = (DataSet)Cache["ProductsData"];
+Cache.Insert("ProductsData", ds);  //+ another way.
+Cache.remove("ProductsData")
+//https://csharp-video-tutorials.blogspot.com/2013/02/caching-in-aspnet-absoluteexpiration.html
+//https://csharp-video-tutorials.blogspot.com/2013/02/caching-in-aspnet-absoluteexpiration.html
+//https://csharp-video-tutorials.blogspot.com/2013/02/cache-dependency-on-files-in-aspnet.html
+//https://csharp-video-tutorials.blogspot.com/2013/02/reloading-or-refreshing-cache.html
+//https://csharp-video-tutorials.blogspot.com/2013/02/reloading-or-refreshing-cache.html
+//https://csharp-video-tutorials.blogspot.com/2013/02/cache-dependency-on-sql-server-database.html
+//https://csharp-video-tutorials.blogspot.com/2013/02/reload-data-into-cache-automatically.html
+
+//! AutoEventWireup
+//https://csharp-video-tutorials.blogspot.com/2013/03/what-is-autoeventwireup-in-aspnet-part.html
+
+//! upload and download file
+//https://csharp-video-tutorials.blogspot.com/2013/08/how-to-upload-and-download-files-using.html
+//! Get and Post
+//https://www.youtube.com/watch?v=Un2JTC7tFPI&list=PL6n9fhu94yhXQS_p1i-HLIftB9Y7Vnxlo&index=143
+//https://csharp-video-tutorials.blogspot.com/2013/09/part-144-how-to-check-if-request-method.html
+
+//!AutoComplete
+//https://csharp-video-tutorials.blogspot.com/2013/09/part-145-implementing-autocomplete.html
+//! Skipped master pages and other topics , capcha
+
+//! Uploading file to SQL
+//https://csharp-video-tutorials.blogspot.com/2015/08/save-image-to-database-using-aspnet.html
+//https://csharp-video-tutorials.blogspot.com/2015/08/load-image-from-database-in-aspnet.html 
